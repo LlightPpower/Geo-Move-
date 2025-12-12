@@ -1,28 +1,21 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public int score = 0;              // Baþlangýç skoru
-    public TextMeshProUGUI scoreText; // <-- TextMeshPro tipi
+    public static ScoreManager Instance;  // ? INSTANCE BURADA TANIMLI
 
-    void Start()
+    public int score;
+    public TMP_Text scoreText;
+
+    private void Awake()
     {
-        UpdateScoreUI();
+        Instance = this;   // ? INSTANCE BURADA AYARLANIYOR
     }
 
-    // Score artýrma fonksiyonu
-    public void IncreaseScore(int amount)
+    public void AddScore(int amount)
     {
         score += amount;
-        UpdateScoreUI();
-    }
-
-    // UI güncelleme
-    void UpdateScoreUI()
-    {
-        if (scoreText != null)
-            scoreText.text = "" + score;
+        scoreText.text = score.ToString();
     }
 }

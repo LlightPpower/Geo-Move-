@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public int scoreValue = 1; // Bu prefab geçtiðinde verilecek puan
+    public int scoreValue = 1;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Yeni yöntem
             ScoreManager scoreManager = Object.FindFirstObjectByType<ScoreManager>();
             if (scoreManager != null)
             {
-                scoreManager.IncreaseScore(scoreValue);
+                scoreManager.AddScore(scoreValue); // ? BURASI DÜZELTÝLDÝ
             }
 
             Destroy(gameObject);
